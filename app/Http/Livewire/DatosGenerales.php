@@ -19,10 +19,12 @@ class DatosGenerales extends Component
     public $ver_direc = false;
     //edit
     public $open_edit = false;
+    public $direct_edit = false;
 
     protected $listeners = ['render', 'delete'];
 
-    public function updatingSearch(){
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 
@@ -66,67 +68,72 @@ class DatosGenerales extends Component
         'post.ndirec2' => 'sometimes',
         'post.direcdirec2' => 'sometimes',
         'post.fonodirec2' => 'sometimes'
-        
+
     ];
     //endedit
 
     public function render()
     {
-        $posts = Orga::where('nombre', 'LIKE', '%' .$this->search. '%')
-            ->orWhere('sector', 'LIKE', '%' .$this->search. '%')
+        $posts = Orga::where('nombre', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('sector', 'LIKE', '%' . $this->search . '%')
             ->orderBy($this->sort, $this->direction)
             ->paginate(15);
 
         return view('livewire.datos-generales', compact('posts'));
     }
-    
-    public function order($sort){
+
+    public function order($sort)
+    {
 
         if ($this->sort == $sort) {
 
             if ($this->direction == 'desc') {
                 $this->direction = 'asc';
             } else {
-                $this->direction = 'desc'; 
+                $this->direction = 'desc';
             }
-
         } else {
             $this->sort = $sort;
             $this->direction = 'asc';
-        }    
+        }
     }
 
-    public function edit(Orga $post){
+    public function edit(Orga $post)
+    {
         $this->post = $post;
         $this->open_edit = true;
     }
 
-    public function editDirec(Orga $post){
+    public function editDirec(Orga $post)
+    {
         $this->post = $post;
-        $this->open_edit = true;
+        $this->direct_edit = true;
     }
 
-    public function ver(Orga $post){
+    public function ver(Orga $post)
+    {
         $this->post = $post;
         $this->ver_post = true;
     }
 
-    public function verDirec(Orga $post){
+    public function verDirec(Orga $post)
+    {
         $this->post = $post;
         $this->ver_direc = true;
     }
 
-    public function update(){
-        $this->validate(); 
+    public function update()
+    {
+        $this->validate();
         $this->post->save();
 
-        $this->reset(['open_edit']);
+        $this->reset(['open_edit', 'direct_edit']);
 
         $this->emit('alert', 'El registro se actualizó exitosamente');
     }
 
-    public function delete(Orga $post){
+    public function delete(Orga $post)
+    {
         $post->delete();
     }
-
 }

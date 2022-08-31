@@ -267,11 +267,10 @@
 
     </x-jet-dialog-modal>
 
-
     <x-jet-dialog-modal wire:model="ver_direc">
 
         <x-slot name='title'>
-            Registro Directiva
+            Registro Directivas
         </x-slot>
 
         <x-slot name='content'>
@@ -379,18 +378,13 @@
         <x-slot name='footer'>
             <x-jet-secondary-button wire:click="$set('ver_direc', false)">
                 Volver
-            </x-jet-secondary-button>
-
-            <x-jet-secondary-button wire:click="$set('editDirec', false)">
-                Editar
-            </x-jet-secondary-button>
+            </x-jet-secondary-button>   
+            <x-jet-secondary-button wire:click="$set('direct_edit', true)">
+                Editar Directiva
+            </x-jet-secondary-button>        
         </x-slot>
 
-        
-
     </x-jet-dialog-modal>
-
-
 
     <x-jet-dialog-modal wire:model="ver_post">
 
@@ -503,8 +497,128 @@
 
     </x-jet-dialog-modal>
 
+    <x-jet-dialog-modal wire:model="direct_edit">
 
-    @push ('js')
+        <x-slot name='title'>
+            Editar Directivas
+        </x-slot>
+
+        <x-slot name='content'>
+            <div class="mb-4">
+                <x-jet-label value="Rut presidente" />
+                <x-jet-input wire:model="post.rutpresi" type="text" class="w-full" />                
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input wire:model="post.npresi" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Dirección" />
+                <x-jet-input wire:model="post.direcpresi" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="fono" />
+                <x-jet-input wire:model="post.fonopresi" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Rut secretario" />
+                <x-jet-input wire:model="post.rutsecre" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input wire:model="post.nsecre" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Dirección" />
+                <x-jet-input wire:model="post.direcsecre" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Fono" />
+                <x-jet-input wire:model="post.fonosecre" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Rut tesorero" />
+                <x-jet-input wire:model="post.rutteso" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input wire:model="post.nteso" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Dirección" />
+                <x-jet-input wire:model="post.directeso" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Fono" />
+                <x-jet-input wire:model="post.fonoteso" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Rut director 1" />
+                <x-jet-input wire:model="post.rutdirec1" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input wire:model="post.ndirec1" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Dirección" />
+                <x-jet-input wire:model="post.direcdirec1" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Fono" />
+                <x-jet-input wire:model="post.fonodirec1" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Rut director 2" />
+                <x-jet-input wire:model="post.rutdirec2" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Nombre" />
+                <x-jet-input wire:model="post.ndirec2" type="text" class="w-full" />
+            </div>
+
+            <div class="mb-4">
+                <x-jet-label value="Dirección" />
+                <x-jet-input wire:model="post.direcdirec2" type="text" class="w-full" />
+            </div>
+            
+            <div class="mb-4">
+                <x-jet-label value="Fono" />
+                <x-jet-input wire:model="post.fonodirec2" type="text" class="w-full" />
+            </div>
+        </x-slot>
+
+        <x-slot name='footer'>
+            <x-jet-secondary-button wire:click="$set('direct_edit', false)">
+                Cancelar
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button wire:click="update" wire:loading.attr="disabled" class="disabled:opacity-25">
+                Actualizar
+            </x-jet-danger-button>
+        </x-slot>
+
+    </x-jet-dialog-modal>
+
+
+    @push('js')
         <script src="sweetalert2.all.min.js"></script>
         
         <script>
